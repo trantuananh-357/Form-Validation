@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form action="" class="form" id="form-1" method="post">
+        <h3 class="heading">Thành Viên Đăng Kí</h3>
+        <p class="desr">Chào mừng bạn đến với chúng tôi ❤</p>
+        <div class="spacer"></div>
+        <div class="form-group ">
+            <label for="fullname" class="form-label">Tên đầy đủ</label>
+            <input name="fullname " id="fullname" class="fullname " type="text" placeholder="ex: Trần Tuấn Anh">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" id="email" class="fullname" type="text" placeholder="ex: anhtrandc539@gmail.com">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="#password" class="form-label">Mật Khẩu</label>
+            <input name="#password" id="password" class="fullname" type="text" placeholder="Nhâp mật khẩu">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="password-confirm" class="form-label">Nhập lại mật khẩu</label>
+            <input name="password-confirm" id="password-confirm" class="fullname" type="text"
+                placeholder="Nhập lại mật khẩu">
+            <span class="form-message"></span>
+        </div>
+        <button class="btn">Đăng Kí</button>
+
+    </form>
+
+
+</body>
+<script src="./validator.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        errorSlector: ".form-message",
+        rules: [
+            Validator.isRequired('#fullname'),
+            Validator.isRequired('#email'),
+
+            Validator.isEmail('#email'),
+            Validator.minlength('#password', 8),
+            Validator.isRequired('#password-confirm'),
+
+            Validator.isConfirm('#password-confirm', function () {
+                return document.querySelector("#form-1 #password").value;
+
+            }, "Mật khẩu nhập lại không chính xác"),
+
+
+        ],
+        onSubmit: function (data) {
+            console.log(data)
+
+
+
+        }
+
+
+    })
+</script>
+
+</html>
